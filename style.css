@@ -1,0 +1,70 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    font-size: 12px;
+}
+.header{
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    height: 10%;
+    padding: 0 2%;
+}
+.company_name{
+    width: 100%;
+    font-size: 2em; 
+}
+
+#canvas{
+    border: 1px solid black;
+}
+.conteiner{
+    display: flex;
+    width: 100vw;
+    justify-content:center;
+}
+.letter, .space {
+    width: 50px;
+    height: 40px;
+    border-bottom: 1px solid black;
+    text-align: center;
+    line-height: 40px;
+    font-size: 30px;
+    margin: 10px;
+}
+.space { 
+    border-bottom: 1px solid red;
+}
+.chooseCategory{
+    width: 100vw;
+    text-align: center;
+    padding-top: 50px;
+    font-size: 5vh;
+}
+.usedLetters { 
+    width:100vw;
+    text-align: center;
+    position: relative;
+    top: 20px;
+    letter-spacing: 2vw;
+    font-size: 8vh;
+}
+
+.buttonsCollection { 
+    width: 100vw;
+    display:  flex;
+    justify-content: space-around;
+    padding-top: 50px;
+    list-style: none;
+}
+.btn{
+    width: 10vw;
+    height: 5vh;
+    background-color: white;
+    border: 1px solid black;
+}
