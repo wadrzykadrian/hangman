@@ -3,11 +3,10 @@ var live;
 var point;
 var categories = [];
 var usedLetters = [];
-
-categories["technique"] = ["komputer", "router", "kolumna", "komputer", "router", "kolumna", "komputer", "router", "kolumna"];
-categories["poets"] = ["Stanisław Słowacki", "Julian Potocki", "Adam Mickiewicz" , "Zenon Ziembiewicz"];
+var messages = ["Dobrze, oby tak dalej!", "Juz użyłeś tej litery!", "Powiesiłeś biednego Zdzicha :C ", "Gratulacje, wygrałeś!",  "Podaj poprawny znak!" , "Nie ma jeszcze żadnego słowa w tej kategori!", " Nie ma takiej litery!"];
+categories["technique"] = ["komputer", "router", "myszka", "procesor","karta graficzna", "drukarka"];
+categories["poets"] = ["Juliusz Słowacki", "Adam Mickiewicz", "Homer", "Henryk Sienkiewicz"];
 categories["my"] = [];
-var test = false;
 
 const gameOn = e => {
 
@@ -26,30 +25,37 @@ const gameOn = e => {
     var word = randomWord(category);
     if(!word)
     {
-        console.log("Nie ma jeszcze żadnego słowa w tej kategori!");
+        document.querySelector(".msg").innerText = messages[5]
         return 0;
+    } else {
+        document.querySelector(".msg").innerText = "";
     }
 
     word = write(word);
 
     var letterColection = document.querySelectorAll(".letter");
 
-    var windowEventHandel;
-    window.removeEventListener("keypress", windowEventHandel);
-    window.addEventListener("keypress", windowEventHandel = function (e) {
-        parse(word, e, letterColection, windowEventHandel)
-    })
+    var windowEventHandler;
+    window.removeEventListener("keypress", windowEventHandler);
+    window.addEventListener("keypress", windowEventHandler = function (e) {
+        parse(word, e, letterColection, windowEventHandler);
+    });
 
 };
 
-const parse = (word, e, collection, windowEventHandel) => {
+const parse = (word, e, collection, windowEventHandler) => {
     let error = true;
-    console.log(usedLetters);
+    let reg = /^[a-zA-Zą-żĄ-Ż]$/ ;
+    let msg = 0;
+    let msgConteiner = document.querySelector(".msg");
+   
+    if(reg.test(e.key)) {
     var used = isUsed(e.key);
 
     if (!used) {
         for (let i = 0; i < word.length; i++) {
-            if (word[i] == e.key) {
+            console.log(word[i].toLowerCase());
+            if (word[i] == e.key || word[i].toLowerCase() == e.key) {
                 collection[i].innerText = word[i];
                 point++;
                 error = false;
@@ -57,18 +63,26 @@ const parse = (word, e, collection, windowEventHandel) => {
         }
         if (error) {
             live--;
+            document.querySelector(".live").innerText = `Pozostało Ci: ${live} szanse aby uratować Zdzicha!`;
+            msg = 6;
             if (live == 0) {
-                console.log("Przegrałeś!");
-                window.removeEventListener("keypress", windowEventHandel);
+               msg = 2; 
+               window.removeEventListener("keypress", windowEventHandler);
             } 
         } 
     } else {
-        console.log("Juz użyłeś tej litery!");
+        msg = 1;
     }
+
     if (point == word.length) {
-        console.log("Gratulacje, wygrałeś!");
-        window.removeEventListener("keypress", windowEventHandel);
+        msg = 3;
+        window.removeEventListener("keypress", windowEventHandler);
     }
+
+    }else 
+        msg = 4;
+
+        msgConteiner.innerText = messages[msg];
 };
 
 const write = word => {
@@ -86,7 +100,7 @@ const write = word => {
         conteiner.appendChild(div);
     }
     return word;
-}
+};
 
 const isUsed = letter => {
     let used = false;
@@ -102,7 +116,7 @@ const isUsed = letter => {
         usedLetters.push(letter);
     }
     return used;
-}
+};
 
 const randomWord = category => {
     let numberWord = Math.floor(Math.random() * categories[category].length);
@@ -112,7 +126,7 @@ const randomWord = category => {
 };
 
 const addWord = () => {
-    var newWord = prompt("Podaj słowo, które chcesz dodać");
+    var newWord = prompt("Podaj słowo, które chcesz dodać").trim();
     categories["my"].push(newWord);
 };
 

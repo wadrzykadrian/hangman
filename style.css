@@ -1,12 +1,14 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-:root{
+
+:root {
     font-size: 12px;
 }
-.header{
+
+.header {
     background-color: red;
     display: flex;
     justify-content: center;
@@ -15,39 +17,46 @@
     height: 10%;
     padding: 0 2%;
 }
-.company_name{
+
+.company_name {
     width: 100%;
-    font-size: 2em; 
+    font-size: 2em;
 }
 
-#canvas{
+#canvas {
     border: 1px solid black;
 }
-.conteiner{
+
+.conteiner {
     display: flex;
     width: 100vw;
-    justify-content:center;
+    justify-content: center;
 }
-.letter, .space {
+
+.letter,
+.space {
     width: 50px;
     height: 40px;
     border-bottom: 1px solid black;
     text-align: center;
     line-height: 40px;
     font-size: 30px;
-    margin: 10px;
+    margin: 50px 20px;
 }
-.space { 
+
+.space {
     border-bottom: 1px solid red;
 }
-.chooseCategory{
+
+.chooseCategory {
     width: 100vw;
     text-align: center;
     padding-top: 50px;
     font-size: 5vh;
 }
-.usedLetters { 
-    width:100vw;
+
+.usedLetters {
+    width: 100vw;
     text-align: center;
     position: relative;
     top: 20px;
@@ -55,16 +64,30 @@
     font-size: 8vh;
 }
 
-.buttonsCollection { 
+.buttonsCollection {
     width: 100vw;
-    display:  flex;
+    display: flex;
     justify-content: space-around;
     padding-top: 50px;
     list-style: none;
 }
-.btn{
+
+.btn {
     width: 10vw;
     height: 5vh;
     background-color: white;
     border: 1px solid black;
+}
+
+.msg {
+    font-size: 5vh;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.live {
+    font-size: 3vh;
+    width: 100vw;
+    text-align: center;
+    margin-top: 50px;
 }
