@@ -54,7 +54,6 @@ const parse = (word, e, collection, windowEventHandler) => {
 
     if (!used) {
         for (let i = 0; i < word.length; i++) {
-            console.log(word[i].toLowerCase());
             if (word[i] == e.key || word[i].toLowerCase() == e.key) {
                 collection[i].innerText = word[i];
                 point++;
